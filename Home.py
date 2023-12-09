@@ -8,9 +8,11 @@ import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
 
 pyvista.start_xvfb()
-st.set_page_config(page_title="🌎 OrbitExplorer")
+st.set_page_config(page_title="OrbitExplorer", page_icon="🌎")
 
 "# Визуализация Орбиты Спутника"
+
+st.sidebar.success("Select a demo above.")
 
 st.divider()
 
