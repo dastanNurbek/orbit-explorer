@@ -12,8 +12,6 @@ st.set_page_config(page_title="OrbitExplorer", page_icon="🌎")
 
 "# Визуализация Орбиты Спутника"
 
-st.sidebar.success("Select a demo above.")
-
 st.divider()
 
 r = st.number_input("Радиус орбиты (км)",min_value=300,max_value=35793)
