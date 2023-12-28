@@ -6,6 +6,7 @@ from pyvista import examples
 from skyfield.api import load, EarthSatellite
 import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
+import subprocess
 
 pv.start_xvfb()
 st.set_page_config(page_title="OrbitExplorer", page_icon="🌎")
@@ -13,6 +14,16 @@ st.set_page_config(page_title="OrbitExplorer", page_icon="🌎")
 "# Визуализация Орбиты Спутника"
 
 st.divider()
+
+## Check if xvfb is already running on the machine
+is_xvfb_running = subprocess.run(["pgrep", "Xvfb"], capture_output=True)
+if is_xvfb_running.returncode == 1:
+    if not IS_APP_EMBED:
+        st.toast("Xvfb was not running...", icon="⚠️")
+    pv.start_xvfb()
+else:
+    if not IS_APP_EMBED:
+        st.toast(f"Xvfb is running! \n\n`PID: {is_xvfb_running.stdout.decode('utf-8')}`", icon="📺")
 
 r = st.number_input("Радиус орбиты (км)",min_value=300,max_value=35793)
 inclination = st.slider("Наклонение орбиты (°)", -90.0000, 90.0000, step=0.0005)
